@@ -1,0 +1,59 @@
+﻿@model TrabajoPAAII.Models.CarreraModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetalleCarrera</title>
+</head>
+<body>
+    <div>
+        <h4>CarreraModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NombreCarrera)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NombreCarrera)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AreaNegocio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AreaNegocio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "EditarCarrera", new { id = Model.Id }) |
+        @Html.ActionLink("Eliminar", "EliminarCarrera", new { id = Model.Id }) |
+        @Html.ActionLink("Volver al Menú", "Inicio")
+    </p>
+</body>
+</html>

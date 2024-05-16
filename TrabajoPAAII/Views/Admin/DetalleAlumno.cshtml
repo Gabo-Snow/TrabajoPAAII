@@ -1,0 +1,69 @@
+﻿@model TrabajoPAAII.Models.AlumnoModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetalleAlumno</title>
+</head>
+<body>
+    <div>
+        <h4>AlumnoModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Rut)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Rut)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Apellido)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Edad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Edad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "EditarAlumno", new { id = Model.Id }) |
+        @Html.ActionLink("Eliminar", "EliminarAlumno", new { id = Model.Id }) |
+        @Html.ActionLink("Volver al Menú", "Inicio")
+    </p>
+
+
+</body>
+</html>

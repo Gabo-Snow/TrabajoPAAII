@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TrabajoPAAII.Models.AlumnoModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Adminsitrador de Usuarios</title>
+</head>
+<body>
+    <h1>Administrador de Alumnos</h1>
+    <br />
+    <p>
+        @Html.ActionLink("Crear Nuevo Alumno", "CrearAlumno")
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>
+                Sexo
+            </th>
+            <th>Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarAlumno", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "DetalleAlumno", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "EliminarAlumno", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div>
+        @Html.ActionLink("Volver al Menú", "Inicio")
+    </div>
+</body>
+</html>

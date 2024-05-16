@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AcademicosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RUT" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Edad" Type="int" Nullable="false" />
+    <Property Name="Sexo" Type="int" Nullable="false" />
+    <Property Name="IdSalud" Type="int" />
+  </EntityType>
+  <EntityType Name="Asignatura">
+    <Key>
+      <PropertyRef Name="IdAsignatura" />
+    </Key>
+    <Property Name="IdAsignatura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Asignatura" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IdCarrera" Type="int" Nullable="false" />
+    <Property Name="Semestre" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carrera">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NombreCarrera" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="AreaDeNegocio" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DatosSaludAlumno">
+    <Key>
+      <PropertyRef Name="IdSalud" />
+    </Key>
+    <Property Name="IdSalud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Estatura" Type="int" Nullable="false" />
+    <Property Name="Peso" Type="int" Nullable="false" />
+    <Property Name="ObservacionesSalud" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProblemaCardiaco" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Alumno_DatosSaludAlumno">
+    <End Role="DatosSaludAlumno" Type="Self.DatosSaludAlumno" Multiplicity="0..1" />
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatosSaludAlumno">
+        <PropertyRef Name="IdSalud" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="IdSalud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Carrera">
+    <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+    <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asignatura">
+        <PropertyRef Name="IdCarrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AcademicosModelStoreContainer">
+    <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignatura" EntityType="Self.Asignatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DatosSaludAlumno" EntityType="Self.DatosSaludAlumno" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Alumno_DatosSaludAlumno" Association="Self.FK_Alumno_DatosSaludAlumno">
+      <End Role="DatosSaludAlumno" EntitySet="DatosSaludAlumno" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Carrera" Association="Self.FK_Asignatura_Carrera">
+      <End Role="Carrera" EntitySet="Carrera" />
+      <End Role="Asignatura" EntitySet="Asignatura" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

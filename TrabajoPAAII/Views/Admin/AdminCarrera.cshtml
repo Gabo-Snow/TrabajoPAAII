@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TrabajoPAAII.Models.CarreraModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Administrador de Carreras</title>
+</head>
+<body>
+    <h1>Administrador de Carreras</h1>
+    <br />
+    <p>
+        @Html.ActionLink("Crear Nueva Carrera", "CrearCarrera")
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCarrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaNegocio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCarrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AreaNegocio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarCarrera", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "DetalleCarrera", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "EliminarCarrera", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div>
+        @Html.ActionLink("Volver al Menú", "Inicio")
+    </div>
+</body>
+</html>

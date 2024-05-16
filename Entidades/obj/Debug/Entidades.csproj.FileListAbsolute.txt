@@ -1,0 +1,12 @@
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\Entidades.dll
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\Entidades.pdb
+D:\ProG\TrabajoPAAII\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+D:\ProG\TrabajoPAAII\Entidades\obj\Debug\Entidades.dll
+D:\ProG\TrabajoPAAII\Entidades\obj\Debug\Entidades.pdb
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\Entidades.dll.config
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\EntityFramework.dll
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\EntityFramework.SqlServer.dll
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\EntityFramework.xml
+D:\ProG\TrabajoPAAII\Entidades\bin\Debug\EntityFramework.SqlServer.xml
+D:\ProG\TrabajoPAAII\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+D:\ProG\TrabajoPAAII\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache

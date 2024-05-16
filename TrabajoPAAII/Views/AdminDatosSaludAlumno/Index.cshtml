@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TrabajoPAAII.Models.AlumnoDatosSaludModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Crear")
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Rut)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Apellido)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Edad)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.Sexo)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoModel.IdSalud)</th>
+            <th>@Html.DisplayNameFor(model => model.DatosSaludAlumnoModel.IdSalud)</th>
+            <th>@Html.DisplayNameFor(model => model.DatosSaludAlumnoModel.Estatura)</th>
+            <th>@Html.DisplayNameFor(model => model.DatosSaludAlumnoModel.Peso)</th>
+            <th>@Html.DisplayNameFor(model => model.DatosSaludAlumnoModel.ObservacionesSalud)</th>
+            <th>@Html.DisplayNameFor(model => model.DatosSaludAlumnoModel.ProblemaCardiaco)</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Rut)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Apellido)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Edad)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.Sexo)</td>
+                <td>@Html.DisplayFor(modelItem => item.AlumnoModel.IdSalud)</td>
+                <td>@Html.DisplayFor(modelItem => item.DatosSaludAlumnoModel.IdSalud)</td>
+                <td>@Html.DisplayFor(modelItem => item.DatosSaludAlumnoModel.Estatura)</td>
+                <td>@Html.DisplayFor(modelItem => item.DatosSaludAlumnoModel.Peso)</td>
+                <td>@Html.DisplayFor(modelItem => item.DatosSaludAlumnoModel.ObservacionesSalud)</td>
+                <td>@Html.DisplayFor(modelItem => item.DatosSaludAlumnoModel.ProblemaCardiaco)</td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.AlumnoModel.Id }) |
+                    @Html.ActionLink("Detalles", "Detalle", new { id = item.AlumnoModel.Id }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.AlumnoModel.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        @Html.ActionLink("Volver al Menú", "../Admin/Inicio")
+    </div>
+</body>
+</html>

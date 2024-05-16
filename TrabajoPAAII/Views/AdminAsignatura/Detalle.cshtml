@@ -1,0 +1,89 @@
+﻿@model TrabajoPAAII.Models.AsignaturaCarreraModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalle</title>
+</head>
+<body>
+    <div>
+        <h4>AsignaturaCarreraModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.IdAsignatura)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.IdAsignatura)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.Asignatura1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.Asignatura1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.Semestre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.Semestre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.IdCarrera)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.IdCarrera)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.Codigo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.Codigo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.NombreCarrera)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.NombreCarrera)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.AreaNegocio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.AreaNegocio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.Estado)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Editar", new { id = Model.AsignaturaModel.IdAsignatura }) |
+        @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.AsignaturaModel.IdAsignatura }) |
+        @Html.ActionLink("Volver a la Lista", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model TrabajoPAAII.Models.AlumnoModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EliminarAlumno</title>
+</head>
+<body>
+    <h3>Está seguro que desea eliminar esto?</h3>
+    <div>
+        <h4>AlumnoModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Rut)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Rut)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Apellido)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Edad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Edad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-default" /> |
+                @Html.ActionLink("Volver", "Inicio")
+            </div>
+        }
+    </div>
+</body>
+</html>

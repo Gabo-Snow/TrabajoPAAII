@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AcademicosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Edad" Type="Int32" Nullable="false" />
+    <Property Name="Sexo" Type="Int32" Nullable="false" />
+    <Property Name="IdSalud" Type="Int32" />
+    <NavigationProperty Name="DatosSaludAlumno1" Relationship="AcademicosModel.FK_Alumno_DatosSaludAlumno" FromRole="Alumno" ToRole="DatosSaludAlumno" />
+  </EntityType>
+  <EntityType Name="Carrera">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NombreCarrera" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AreaDeNegocio" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Asignatura" Relationship="AcademicosModel.FK_Asignatura_Carrera" FromRole="Carrera" ToRole="Asignatura" />
+  </EntityType>
+  <EntityContainer Name="AcademicosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumno" EntityType="Self.Alumno" />
+    <EntitySet Name="Carrera" EntityType="Self.Carrera" />
+    <EntitySet Name="Asignatura" EntityType="AcademicosModel.Asignatura" />
+    <EntitySet Name="DatosSaludAlumno" EntityType="AcademicosModel.DatosSaludAlumno" />
+    <AssociationSet Name="FK_Asignatura_Carrera" Association="AcademicosModel.FK_Asignatura_Carrera">
+      <End Role="Carrera" EntitySet="Carrera" />
+      <End Role="Asignatura" EntitySet="Asignatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alumno_DatosSaludAlumno" Association="AcademicosModel.FK_Alumno_DatosSaludAlumno">
+      <End Role="DatosSaludAlumno" EntitySet="DatosSaludAlumno" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Asignatura">
+    <Key>
+      <PropertyRef Name="IdAsignatura" />
+    </Key>
+    <Property Name="IdAsignatura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Asignatura1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdCarrera" Type="Int32" Nullable="false" />
+    <Property Name="Semestre" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Carrera" Relationship="AcademicosModel.FK_Asignatura_Carrera" FromRole="Asignatura" ToRole="Carrera" />
+  </EntityType>
+  <EntityType Name="DatosSaludAlumno">
+    <Key>
+      <PropertyRef Name="IdSalud" />
+    </Key>
+    <Property Name="IdSalud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estatura" Type="Int32" Nullable="false" />
+    <Property Name="Peso" Type="Int32" Nullable="false" />
+    <Property Name="ObservacionesSalud" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProblemaCardiaco" Type="Boolean" />
+    <NavigationProperty Name="Alumno1" Relationship="AcademicosModel.FK_Alumno_DatosSaludAlumno" FromRole="DatosSaludAlumno" ToRole="Alumno" />
+  </EntityType>
+  <Association Name="FK_Asignatura_Carrera">
+    <End Type="AcademicosModel.Carrera" Role="Carrera" Multiplicity="1" />
+    <End Type="AcademicosModel.Asignatura" Role="Asignatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asignatura">
+        <PropertyRef Name="IdCarrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alumno_DatosSaludAlumno">
+    <End Type="AcademicosModel.DatosSaludAlumno" Role="DatosSaludAlumno" Multiplicity="0..1" />
+    <End Type="AcademicosModel.Alumno" Role="Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatosSaludAlumno">
+        <PropertyRef Name="IdSalud" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="IdSalud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

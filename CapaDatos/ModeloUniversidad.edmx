@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AcademicosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RUT" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edad" Type="int" Nullable="false" />
+          <Property Name="Sexo" Type="int" Nullable="false" />
+          <Property Name="IdSalud" Type="int" />
+        </EntityType>
+        <EntityType Name="Asignatura">
+          <Key>
+            <PropertyRef Name="IdAsignatura" />
+          </Key>
+          <Property Name="IdAsignatura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Asignatura" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IdCarrera" Type="int" Nullable="false" />
+          <Property Name="Semestre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreCarrera" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AreaDeNegocio" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DatosSaludAlumno">
+          <Key>
+            <PropertyRef Name="IdSalud" />
+          </Key>
+          <Property Name="IdSalud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estatura" Type="int" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="ObservacionesSalud" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProblemaCardiaco" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Alumno_DatosSaludAlumno">
+          <End Role="DatosSaludAlumno" Type="Self.DatosSaludAlumno" Multiplicity="0..1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatosSaludAlumno">
+              <PropertyRef Name="IdSalud" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="IdSalud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asignatura_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Asignatura">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AcademicosModelStoreContainer">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asignatura" EntityType="Self.Asignatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosSaludAlumno" EntityType="Self.DatosSaludAlumno" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alumno_DatosSaludAlumno" Association="Self.FK_Alumno_DatosSaludAlumno">
+            <End Role="DatosSaludAlumno" EntitySet="DatosSaludAlumno" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asignatura_Carrera" Association="Self.FK_Asignatura_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Asignatura" EntitySet="Asignatura" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AcademicosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Edad" Type="Int32" Nullable="false" />
+          <Property Name="Sexo" Type="Int32" Nullable="false" />
+          <Property Name="IdSalud" Type="Int32" />
+          <NavigationProperty Name="DatosSaludAlumno1" Relationship="AcademicosModel.FK_Alumno_DatosSaludAlumno" FromRole="Alumno" ToRole="DatosSaludAlumno" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreCarrera" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaDeNegocio" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Asignatura" Relationship="AcademicosModel.FK_Asignatura_Carrera" FromRole="Carrera" ToRole="Asignatura" />
+        </EntityType>
+        <EntityContainer Name="AcademicosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" />
+          <EntitySet Name="Asignatura" EntityType="AcademicosModel.Asignatura" />
+          <EntitySet Name="DatosSaludAlumno" EntityType="AcademicosModel.DatosSaludAlumno" />
+          <AssociationSet Name="FK_Asignatura_Carrera" Association="AcademicosModel.FK_Asignatura_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Asignatura" EntitySet="Asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alumno_DatosSaludAlumno" Association="AcademicosModel.FK_Alumno_DatosSaludAlumno">
+            <End Role="DatosSaludAlumno" EntitySet="DatosSaludAlumno" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Asignatura">
+          <Key>
+            <PropertyRef Name="IdAsignatura" />
+          </Key>
+          <Property Name="IdAsignatura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Asignatura1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdCarrera" Type="Int32" Nullable="false" />
+          <Property Name="Semestre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carrera" Relationship="AcademicosModel.FK_Asignatura_Carrera" FromRole="Asignatura" ToRole="Carrera" />
+        </EntityType>
+        <EntityType Name="DatosSaludAlumno">
+          <Key>
+            <PropertyRef Name="IdSalud" />
+          </Key>
+          <Property Name="IdSalud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatura" Type="Int32" Nullable="false" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="ObservacionesSalud" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProblemaCardiaco" Type="Boolean" />
+          <NavigationProperty Name="Alumno1" Relationship="AcademicosModel.FK_Alumno_DatosSaludAlumno" FromRole="DatosSaludAlumno" ToRole="Alumno" />
+        </EntityType>
+        <Association Name="FK_Asignatura_Carrera">
+          <End Type="AcademicosModel.Carrera" Role="Carrera" Multiplicity="1" />
+          <End Type="AcademicosModel.Asignatura" Role="Asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Asignatura">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alumno_DatosSaludAlumno">
+          <End Type="AcademicosModel.DatosSaludAlumno" Role="DatosSaludAlumno" Multiplicity="0..1" />
+          <End Type="AcademicosModel.Alumno" Role="Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatosSaludAlumno">
+              <PropertyRef Name="IdSalud" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="IdSalud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AcademicosModelStoreContainer" CdmEntityContainer="AcademicosEntities">
+          <EntitySetMapping Name="Alumno">
+            <EntityTypeMapping TypeName="AcademicosModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="IdSalud" ColumnName="IdSalud" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carrera">
+            <EntityTypeMapping TypeName="AcademicosModel.Carrera">
+              <MappingFragment StoreEntitySet="Carrera">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
+                <ScalarProperty Name="AreaDeNegocio" ColumnName="AreaDeNegocio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asignatura">
+            <EntityTypeMapping TypeName="AcademicosModel.Asignatura">
+              <MappingFragment StoreEntitySet="Asignatura">
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+                <ScalarProperty Name="Asignatura1" ColumnName="Asignatura" />
+                <ScalarProperty Name="IdAsignatura" ColumnName="IdAsignatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosSaludAlumno">
+            <EntityTypeMapping TypeName="AcademicosModel.DatosSaludAlumno">
+              <MappingFragment StoreEntitySet="DatosSaludAlumno">
+                <ScalarProperty Name="ProblemaCardiaco" ColumnName="ProblemaCardiaco" />
+                <ScalarProperty Name="ObservacionesSalud" ColumnName="ObservacionesSalud" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Estatura" ColumnName="Estatura" />
+                <ScalarProperty Name="IdSalud" ColumnName="IdSalud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

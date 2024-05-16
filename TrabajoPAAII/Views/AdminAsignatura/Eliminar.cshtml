@@ -1,0 +1,136 @@
+﻿@model TrabajoPAAII.Models.AsignaturaCarreraModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Eliminar</title>
+</head>
+<body>
+    <h3>¿Está seguro que desea eliminar lo siguiente?</h3>
+    <div>
+        <h4>Eliminar Asignatura y Carrera</h4>
+        <hr />
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AsignaturaModel.IdAsignatura, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AsignaturaModel.IdAsignatura, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AsignaturaModel.IdAsignatura, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <dl class="dl-horizontal">
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.IdAsignatura)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.Asignatura1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.Asignatura1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.Semestre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.Semestre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AsignaturaModel.IdCarrera)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AsignaturaModel.IdCarrera)
+            </dd>
+
+        </dl>
+        <div class="form-horizontal">
+
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CarreraModel.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CarreraModel.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CarreraModel.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        </div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.Id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.Codigo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.Codigo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.NombreCarrera)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.NombreCarrera)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.AreaNegocio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.AreaNegocio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarreraModel.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarreraModel.Estado)
+            </dd>
+
+        </dl>
+
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-default" /> |
+                @Html.ActionLink("Volver a la Lista", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
